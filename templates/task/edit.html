@@ -1,0 +1,35 @@
+{% include 'header.html' %}
+{% include 'topbanner.html' %}
+<section class="pt-0">
+    <div class="container">
+        <p class="text-red">{{ content_data.saveError }}</p>
+        <p class="text-success">{{ content_data.saveSuccess }}</p>
+        <form method="POST" action="/task/?action=edit&id={{ content_data.task.id }}">
+
+            <div class="input-group u-rounded-50 border u-of-hidden u-mb-20">
+                <div class="input-group-addon bg-white border-0 pl-4 pr-0">
+                    <span class="icon icon-User text-primary"></span>
+                </div>
+                <input type="text" class="form-control border-0 p-3" placeholder="Пользователь" name="username" value="{{ content_data.task.username }}" required>
+            </div>
+
+            <div class="input-group u-rounded-50 border u-of-hidden u-mb-20">
+                <div class="input-group-addon bg-white border-0 pl-4 pr-0">
+                    <span class="icon icon-User text-primary"></span>
+                </div>
+                <input type="email" class="form-control border-0 p-3" placeholder="email" name="email" value="{{ content_data.task.email }}" required>
+            </div>
+
+            <div class="input-group u-rounded-50 border u-of-hidden u-mb-20">
+                <div class="input-group-addon bg-white border-0 pl-4 pr-0">
+                    <span class="icon icon-Mail text-primary"></span>
+                </div>
+                <input type="text" class="form-control border-0 p-3" placeholder="Описание" name="description" value="{{ content_data.task.description }}" required>
+            </div><input type="hidden" name="id" value="{{ content_data.task.id }}">
+            <button type="submit" class="btn btn-primary btn-rounded u-mt-20 u-w-170 u-mb-20">
+                Сохранить
+            </button>
+        </form>
+    </div>
+</section>
+{% include 'footer.html' %}

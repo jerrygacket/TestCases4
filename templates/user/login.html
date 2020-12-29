@@ -1,0 +1,32 @@
+{%include 'header.html'%}
+{% include 'topbanner.html' %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <h2>Вход</h2>
+                <p class="text-red">{{ content_data.authError }}</p>
+                <form method="POST" action="/user/?action=login">
+
+                    <div class="input-group u-rounded-50 border u-of-hidden u-mb-20">
+                        <div class="input-group-addon bg-white border-0 pl-4 pr-0">
+                            <span class="icon icon-User text-primary"></span>
+                        </div>
+                        <input type="text" class="form-control border-0 p-3" placeholder="Your login" name="login">
+                    </div>
+
+                    <div class="input-group u-rounded-50 border u-of-hidden u-mb-20">
+                        <div class="input-group-addon bg-white border-0 pl-4 pr-0">
+                            <span class="icon icon-Mail text-primary"></span>
+                        </div>
+                        <input type="password" class="form-control border-0 p-3" placeholder="Your password" name="password">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-rounded u-mt-20 u-w-170 u-mb-20">
+                        Войти
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{%include 'footer.html'%}
