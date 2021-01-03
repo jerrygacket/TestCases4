@@ -1,6 +1,6 @@
 <?php
 
-class TaskController extends Controller
+class TaskController
 {
     public $view = 'task';
 
@@ -25,7 +25,7 @@ class TaskController extends Controller
             } else {
                 $result['tasks'] = Task::getMany();
                 $result['saveSuccess'] = 'Создана новая задача';
-                $result['newView'] = '../index/index';
+                $result['newView'] = '/index/index';
             }
         }
 

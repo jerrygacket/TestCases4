@@ -1,6 +1,6 @@
 <?php
 
-class IndexController extends Controller
+class IndexController
 {
     public $view = 'index';
     public $title = 'Главная';

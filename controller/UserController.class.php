@@ -1,5 +1,5 @@
 <?php
-class UserController extends Controller
+class UserController
 {
     public $view = 'user';
     public $title = 'Вход';

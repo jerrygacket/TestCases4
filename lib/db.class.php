@@ -45,7 +45,6 @@ class db
 
         if ($q->errorCode() != PDO::ERR_NONE) {
             $info = $q->errorInfo();
-            Logger::Write($info[2]);
             return false;
         }
 
@@ -60,7 +59,6 @@ class db
 
         if ($q->errorCode() != PDO::ERR_NONE) {
             $info = $q->errorInfo();
-            Logger::Write($info[2]);
             return false;
         }
 

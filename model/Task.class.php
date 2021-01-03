@@ -16,7 +16,7 @@ class Task {
     }
 
     public static function changeStatus($id, $newStatus) {
-        $sql = 'UPDATE '.self::$table.' SET ready = :newStatus WHERE id=:id';
+        $sql = 'UPDATE '.self::$table.' SET ready = :newStatus, edited = true WHERE id=:id';
 
         return db::getInstance()->Update($sql, [':id' => $id, ':newStatus' => $newStatus]);
     }
@@ -55,6 +55,7 @@ class Task {
         foreach ($taskData as $key => $value) {
             $sets[] = $key.'=:'.$key;
         }
+        $sets[] = 'edited=true';
         $sets_s = implode(',',$sets);
 
         $sql = 'UPDATE '.self::$table.' SET '.$sets_s.' WHERE id = '.$oldTask['id'];

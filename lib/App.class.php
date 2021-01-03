@@ -24,32 +24,27 @@ class App
     {
         $url = explode("/", $url);
 
-        $_GET['page'] = (!empty($url[1]) ? $url[1] : 'Index');
+        $controllerName = ucfirst((!empty($url[1]) ? $url[1] : 'Index')) . 'Controller';
+        $methodName = isset($_GET['action']) ? $_GET['action'] : 'index';
+        $controller = new $controllerName();
+        $data = [
+            'content_data' => $controller->$methodName($_GET),
+            'login' => User::checkLogin($_SESSION['user'] ?? false),
+        ];
 
-        if (isset($_GET['page'])) {
-            $controllerName = ucfirst($_GET['page']) . 'Controller';
-            $methodName = isset($_GET['action']) ? $_GET['action'] : 'index';
-            $controller = new $controllerName(strtolower($_GET['page']));
-            $data = [
-                'content_data' => $controller->$methodName($_GET),
-                'page' => $controller->getPageInfo(),
-                'login' => User::checkLogin($_SESSION['user'] ?? false),
-                'site' => Config::get('site'),
-            ];
+        if (isset($data['content_data']['newView'])) {
+//            $newView = explode("/", $data['content_data']['newView']);
+            $view = $data['content_data']['newView'] . '.html';
+//            $view = ($newView[1] ? $newView[1] : $controller->view) . '/' . $data['content_data']['newView'] . '.html';
+        } else {
+            $view = $controller->view . '/' . $methodName . '.html';
+        }
 
-            if (isset($data['content_data']['newView'])) {
-                $newView = explode("/", $data['content_data']['newView']);
-                $view = ($newView[1] ? $newView[1] : $controller->view) . '/' . $data['content_data']['newView'] . '.html';
-            } else {
-                $view = $controller->view . '/' . $methodName . '.html';
-            }
-
-            if (!isset($_GET['asAjax'])) {
-                $loader = new \Twig\Loader\FilesystemLoader(Config::get('path_templates'));
-                $twig = new \Twig\Environment($loader);
-                $template = $twig->loadTemplate($view);
-                echo $template->render($data);
-            }
+        if (!isset($_GET['asAjax'])) {
+            $loader = new \Twig\Loader\FilesystemLoader(Config::get('path_templates'));
+            $twig = new \Twig\Environment($loader);
+            $template = $twig->load($view);
+            echo $template->render($data);
         }
     }
 }

@@ -12,7 +12,6 @@
                 <th scope="col">email</th>
                 <th scope="col">Описание</th>
                 <th scope="col">Выполнено</th>
-                <th scope="col">Отредактировано Админом</th>
                 {% if content_data.admin %}
                     <th scope="col">Редактировать</th>
                 {% endif %}
@@ -32,9 +31,6 @@
                         {% if not content_data.admin %} disabled="true" {% endif %}
                         {% if item.ready != 0 %} checked {% endif %}
                         onclick="changeStatus(this, '{{item.id}}')">
-                </td>
-                <td>
-                    {% if item.edited != 0 %} <i class="fa fa-check"></i> {% endif %}
                 </td>
                 {% if content_data.admin %}
                     <td><a href="task/?action=edit&id={{ item.id }}"><i class="fa fa-edit"></i></a></td>

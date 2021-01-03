@@ -1,7 +1,5 @@
 <?php
 require_once ('lib/vendor/autoload.php');
-//require_once 'lib/Twig/Autoloader.php';
-//Twig_Autoloader::register();
 
 spl_autoload_register("gbStandardAutoload");
 
@@ -11,7 +9,7 @@ function gbStandardAutoload($className)
         'controller',
         'lib',
         'lib/vendor',
-        'model/'
+        'model'
     ];
     $found = false;
     foreach ($dirs as $dir) {
