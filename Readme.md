@@ -12,3 +12,6 @@ CREATE TABLE 'users' ('id' INT(11) PRIMARY KEY AUTO_INCREMENT,
 
 INSERT INTO users (username,email,passwordHash,isAdmin) VALUES
 ('admin','admin@email.test','$2y$10$qHgYVIPyX6BvaMGMqSiMKu3epWFtkRm6Pym6hecMCtmecGvKtpSJy',true);
+
+
+Для установки Twig в директории lib/ необходимо выполнить команду ``composer require twig/twig``
